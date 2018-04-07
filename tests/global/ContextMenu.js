@@ -18,18 +18,20 @@ ContextMenu = class ContextMenu extends Container {
   }
 
   btn (name, act) {
-    let btn = this.elm('<button>');
-    btn.html(name);
-    btn.attr({class:`${this.id}-btn`});
-    btn.on('click', act, true, 'action');
-    this.btns.push({el:btn,name,id:this.length,type:'btn'});
+    super.create('<button>', true).then((el) => {
+      el.html(name).attr({class:`${this.id}-btn`})
+      .on('click', act, true, 'action');
+      this.btns.push({el,name,id:this.length,type:'btn'});
+      el._nDocument();
+    });
     return this;
   }
 
   brk () {
-    let brk = this.elm('<p>');
-    brk.attr({class:`${this.id}-break`});
-    this.btns.push({el:brk,id:this.length,type:'break'});
+    super.create('<p>', true).then((el) => {
+      el.attr('class', `${this.id}-break`);
+      this.btns.push({el,id:this.length,type:'break'});
+    });
     return this;
   }
 
@@ -51,7 +53,7 @@ ContextMenu = class ContextMenu extends Container {
     } else if (typdef === 'object') {
       this.switcher(typ.typ, typ.name, typ.act);
     } else {
-      this.swticher(typ, name, act);
+      this.switcher(typ, name, act);
     }
     return this;
   }
