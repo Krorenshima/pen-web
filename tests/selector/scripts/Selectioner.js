@@ -9,7 +9,7 @@ Selectionr = class Selectionr extends Container {
 
       this.create('<h4>', 'header', true).then((el) => {
         el.attr('class',`${this.id}-header`).html(el.selector);
-        this.closer el.create('<span>').attr('class', `${this.id}-closer`)
+        this.closer = el.create('<span>').attr('class', `${this.id}-closer`)
         .html('X').on('click', ()=> this.close());
       });
 
