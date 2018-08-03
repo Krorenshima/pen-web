@@ -59,18 +59,16 @@ Container = class Container {
   }
 
   create (el, prom = !1) {
-    switch (prom) {
-      case true:
-        return new Promise((res, rej) => {
-          try {
-            res(this._cre(el));
-          } catch (err) {
-            rej(err);
-          }
-        });
-        break;
-      default:
-        return this._cre(el);
+    if (prom) {
+      return new Promise((res, rej) => {
+        try {
+          res(this._cre(el));
+        } catch (err) {
+          rej(err);
+        }
+      });
+    } else {
+      return this._cre(el);
     }
   }
 
