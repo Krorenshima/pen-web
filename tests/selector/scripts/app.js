@@ -52,7 +52,7 @@ menu.create([
 
 selector.cont.attr('align','center');
 
-selector.input = selector.elm('<input>').attr({id:'selectrInput',class:'element-input input',placeholder:'Place selector here.'})
+selector.input = selector.create('<input>', false).attr({id:'selectrInput',class:'element-input input',placeholder:'Place selector here.'})
 .on('keydown',e=>{
   if(e.key==='Enter'){
     e.preventDefault();
@@ -60,7 +60,7 @@ selector.input = selector.elm('<input>').attr({id:'selectrInput',class:'element-
   }
 });
 
-selector.btn = selector.elm('<button>').attr({id:'selectrBtn',class:'element-selector btn'}).html('Submit').on('click',e=>{
+selector.btn = selector.create('<button>', false).attr({id:'selectrBtn',class:'element-selector btn'}).html('Submit').on('click',e=>{
   let val = selector.input.text,
   timeout = 1750;
   if (val.length === 0) {
@@ -79,8 +79,8 @@ selector.btn = selector.elm('<button>').attr({id:'selectrBtn',class:'element-sel
   }
 });
 
-selector.elm('<br>');
-selector.sideMsg = selector.elm('<p>').attr({id:'sideInfo',class:'side-message'});
+selector.create('<br>', false);
+selector.sideMsg = selector.create('<p>', false).attr({id:'sideInfo',class:'side-message'});
 
 wrapper.append(selector.cont);
 
