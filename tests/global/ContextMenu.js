@@ -48,12 +48,15 @@ ContextMenu = class ContextMenu extends Container {
 
   create (typ, name, act) {
     let typdef = pen.type(typ);
-    if (typdef === 'array') {
-      typ.forEach(dt => this.switcher(dt.typ, dt.name, dt.act));
-    } else if (typdef === 'object') {
-      this.switcher(typ.typ, typ.name, typ.act);
-    } else {
-      this.switcher(typ, name, act);
+    switch (typdef) {
+      case 'array':
+        typ.forEach(dt => this.switcher(dt.typ, dt.name, dt.act));
+        break;
+      case 'object':
+        this.switcher(typ.typ, typ.name, typ.act);
+        break;
+      default:
+        this.switcher(typ, name, act);
     }
     return this;
   }
@@ -89,39 +92,41 @@ ContextMenu = class ContextMenu extends Container {
   }
 
   checkFor (cls, creation) {
-    this.checkElms.push({class:cls, creation});
+    cls === '*' ? console.log('yes') : this.checkElms.push({class:cls, creation});
     return this;
   }
 
-  arrange (target, celm) {
-    let tof = target.hasClass(celm.class);
-    if (tof) {
-      if (!this.exists('name', celm.creation.name)) {
-        this.create(celm.creation);
-      }
-    } else {
-      if (this.exists('name', celm.creation.name)) {
-        this.remove('name', celm.creation.name);
-      }
-    }
-    return this;
-  }
+  // arrange (target, celm) {
+  //   let tof = target.hasClass(celm.class);
+  //   if (tof) {
+  //     if (!this.exists('name', celm.creation.name)) {
+  //       this.create(celm.creation);
+  //     }
+  //   } else {
+  //     if (this.exists('name', celm.creation.name)) {
+  //       this.remove('name', celm.creation.name);
+  //     }
+  //   }
+  //   return this;
+  // }
 
   check (e) {
     let target = pen(e.target);
-    for (let i = 0, len = this.checkElms.length; i < len; i++) {
-      this.arrange(target, this.checkElms[i]);
+    for (let i = 0, len = this.checkElms.length, celm, tof, nm; i < len; i++) {
+      celm = this.checkElms[i]; tof = target.hasClass(celm.class); nm = celm.creation.name;
+      tof ? (!this.exists('name', nm) && this.create(celm.creation)) : (this.exists('name', nm) && this.remove('name', nm));
     }
     return this;
   }
 
   locate (e) {
     e.preventDefault();
-    if (this.checkElms.length !== 0) {
-      this.check(e);
-    }
-    this.cont.css('display', '');
-    this.cont.css({top:`${e.clientY}px`, left:`${e.clientX}px`});
+    this.checkElms.length !== 0 && this.check(e);
+    this.cont.css({
+      display: '',
+      top:`${e.clientY}px`,
+      left:`${e.clientX}px`
+    });
   }
 
   static fromTemplate (list) {

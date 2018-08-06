@@ -2,6 +2,12 @@ let Container;
 
 Container = class Container {
   constructor (cls, id, attrs) {
+    /*
+    * The start of the container, just sets up the basic needs for container creation and storage.
+    * @type {?string}, @type {?string}, @type {object}
+    * Passing in the first two arguments are strings, the first is necessary for it automatically appends a class
+    * to the element, the second isn't a requirement for it CamelCases the first argument if it detects \s|_|-
+    */
     id = id || pen.cc(cls);
     if (id.length === 0) id = pen.cc(cls);
     this.cont = pen(`<div class="${cls}" id="${id}">`);
@@ -131,5 +137,10 @@ Container = class Container {
   appendTo (el) {
     this.cont.appendTo(el);
     return this;
+  }
+
+  // EXPERIMENTAL: This will probably be removed but allows creation of elements even easier
+  builder (str) {
+
   }
 }

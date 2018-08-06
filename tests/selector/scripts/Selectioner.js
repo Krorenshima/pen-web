@@ -7,39 +7,56 @@ Selectionr = class Selectionr extends Container {
       this._id = Selectionr.mem.length;
       this.elMem = el;
 
-      this.create('<h4>', 'header', true).then((el) => {
-        el.attr('class',`${this.id}-header`).html(el.selector);
-        this.closer = el.create('<span>').attr('class', `${this.id}-closer`)
+      this.create('<h4>', true).then(el => {
+        el._document('header');
+        el.attr('class',`${this.id}-header`).html(this.elMem.selector);;
+        this.closer = el.create('<span>','child').attr('class', `${this.id}-closer`)
         .html('X').on('click', ()=> this.close());
       });
 
-      this.create('<button>', 'highlighter', true).then((el) => {
+      this.create('<button>', true).then((el) => {
+        el._document('highlighter');
         el.attr({id:'highlighter',class:'highlighter btn'})
-        .html('Highlight').on('mouseup',()=>this.select());
+        .html('Highlight').on('mouseup',() => this.select());
       });
 
-      this.create('<input>', 'textChanger', true).then((el) => {
+      this.create('<input>', true).then((el) => {
+        el._document('textChanger');
         el.attr({id:'textChanger',class:'text-changer input',placeholder:'change the text'})
-        .on('keydown',(e)=>{if(e.key==='Enter'){this.changeText()}});
+        .on('keydown',(e) => {
+          if (e.key === 'Enter') {
+            this.elMem.html(this.textChangerCre.text);
+            this.textChanger.html('');
+          }
+        });
       });
 
-      this.create('<input>', 'toggler', true).then((el) => {
+      this.create('<input>', true).then((el) => {
+        el._document('toggler');
         el.attr({id:'toggler',class:'toggler input',placeholder:'toggle a class'})
-        .on('keydown',(e)=>{if(e.key==='Enter'){this.toggle()}});
+        .on('keydown',(e) => {
+          if (e.key === 'Enter') {
+            this.elMem.toggle(this.togglerCre.text);
+            this.toggler.html('');
+          }
+        });
       });
 
-      this.create('<pre>', 'eventTron', true).then((el) => {
+      this.create('<pre>', true).then((el) => {
         if (this.elMem.el.events != null) {
+          el._document('eventTron');
           let ev = Object.keys(this.elMem.el.events), len = ev.length <= 1, determ = len ? '' : 's';
           el.attr({id:'eventTracker',class:'event-tracker'})
           .html(`This element has: ${ev.length} event${determ}.\n.:Type${determ}:.\n${ev.join(', ')}`);
           if (ev.includes('click')) {
-            this.create('<button>', 'clicker', true).then((el) => {
+            this.create('<button>', true).then((el) => {
+              el._document('clicker');
               el.attr({id:'clicker',class:'clicker btn'})
               .html('Click').on('mousedown',()=>this.click());
             });
           }
         } else {
+          el._document('eventNon');
           el.attr({id: 'eventNon',class:'event-non'})
           .html('This element has no events attached to it.');
         }
@@ -56,19 +73,8 @@ Selectionr = class Selectionr extends Container {
   get name () {
     return this.header.text;
   }
-
   select () {
     this.elMem.toggle('selected');
-    return this;
-  }
-  changeText () {
-    this.elMem.html(this.textChanger.text);
-    this.textChanger.html('');
-    return this;
-  }
-  toggle () {
-    this.elMem.toggle(this.toggler.text);
-    this.toggler.html('');
     return this;
   }
   click () {

@@ -79,6 +79,10 @@ selector.btn = selector.create('<button>', false).attr({id:'selectrBtn',class:'e
   }
 });
 
+// pBody.on('mouseover', (e) => {
+//   console.log(e.target);
+// });
+
 selector.create('<br>', false);
 selector.sideMsg = selector.create('<p>', false).attr({id:'sideInfo',class:'side-message'});
 
@@ -86,6 +90,6 @@ wrapper.append(selector.cont);
 
 pBody.append(menu.cont, header.cont, wrapper);
 pHead.append(styz);
-rando = ['.header-title', 'a.btn[href]'];
+rando = ['a.btn[href]'];
 selector.input.html(pen.random(rando));
 selector.btn.el.click();

@@ -64,11 +64,7 @@ Header = class Header extends Container {
   }
 
   link (name, href) {
-    if (pen.type(name) === 'array') {
-      name.forEach(link => this.switcher(link.name, link.href));
-    } else {
-      this.switcher(name, href);
-    }
+    pen.type(name) === 'array' ? name.forEach(link => this.switcher(link.name, link.href)) : this.switcher(name, href);
     return this;
   }
 };
