@@ -1,4 +1,13 @@
-let styz, wrapper, selector, header, rando, menu;
+let styz, wrapper, selector, header, randowo, rando, menu,
+yaynay = false;
+
+rando = pen('<div class="rando">')
+.appendTo('body')
+.css({
+  background: 'rgba(0,0,0,.5)', border: 'solid 2px grey',
+  'border-radius': '15px', position: 'fixed', display: 'none',
+  color: 'white', padding: '5px', 'z-index': 19999
+});
 
 styz = pen('<link rel="stylesheet" href="../../style.css">');
 wrapper = pen('<div id="wrpr" class="wrapper">');
@@ -20,6 +29,41 @@ menu.checkFor('selector', {
   act (e) {
     let target = pen(e.target);
     Selectionr.remove('_id', +target.attr('id'));
+  }
+}).checkFor('wrapper', {
+  typ: 'btn',
+  name: 'Show classes',
+  act () {
+    if (yaynay === false) {
+      yaynay = true;
+      rando.css('display', '');
+      if (pBody.el.events != null) {
+        if (pBody.el.events['mousemove'] != null || pBody.el.events['mouseover'] != null) {return}
+        pBody.on('mouseover', (e) => {
+          let selrr;
+          selrr = pen(e.target).selector;
+          if (selrr === rando.selector) {return}
+          rando.html(selrr);
+          // console.log(selrr.selector);
+        }).on('mousemove', (e) => {
+          rando.css({top: `${e.clientY+4}px`, left: `${e.clientX+20}px`});
+        });
+      } else {
+        pBody.on('mouseover', (e) => {
+          let selrr;
+          selrr = pen(e.target).selector;
+          if (selrr === rando.selector) {return}
+          rando.html(selrr);
+          // console.log(selrr.selector);
+        }).on('mousemove', (e) => {
+          rando.css({top: `${e.clientY+4}px`, left: `${e.clientX+20}px`});
+        });
+      }
+    } else {
+      yaynay = false;
+      // pBody.off('mouseover').off('mousemove');
+      rando.css('display', 'none');
+    }
   }
 });
 menu.create([
@@ -79,10 +123,6 @@ selector.btn = selector.create('<button>', false).attr({id:'selectrBtn',class:'e
   }
 });
 
-// pBody.on('mouseover', (e) => {
-//   console.log(e.target);
-// });
-
 selector.create('<br>', false);
 selector.sideMsg = selector.create('<p>', false).attr({id:'sideInfo',class:'side-message'});
 
@@ -90,6 +130,6 @@ wrapper.append(selector.cont);
 
 pBody.append(menu.cont, header.cont, wrapper);
 pHead.append(styz);
-rando = ['a.btn[href]'];
-selector.input.html(pen.random(rando));
+randowo = ['a.btn[href]'];
+selector.input.html(pen.random(randowo));
 selector.btn.el.click();

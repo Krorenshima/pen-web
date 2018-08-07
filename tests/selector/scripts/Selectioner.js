@@ -9,7 +9,7 @@ Selectionr = class Selectionr extends Container {
 
       this.create('<h4>', true).then(el => {
         el._document('header');
-        el.attr('class',`${this.id}-header`).html(this.elMem.selector);;
+        el.attr('class',`${this.id}-header`).html(this.elMem.selector);
         this.closer = el.create('<span>','child').attr('class', `${this.id}-closer`)
         .html('X').on('click', ()=> this.close());
       });
@@ -71,7 +71,7 @@ Selectionr = class Selectionr extends Container {
   }
 
   get name () {
-    return this.header.text;
+    return this.headerCre.text;
   }
   select () {
     this.elMem.toggle('selected');

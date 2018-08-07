@@ -1,17 +1,18 @@
 .context-menu
-  border: solid 2px $mColor-Light
-  background: transparentize(black, 0.2)
-  border-radius: 15px
+  // border-radius: 15px
   overflow: hidden
-  width: 15%
+  width: 35%
+  height: 35vh
   z-index: 2000
-  box-shadow: 15px 15px 25px transparentize(black, 0.5)
   .ctxMenu-btn
+    border: solid 2px $mColor-Light
+    background: transparentize(black, 0.2)
+    box-shadow: 15px 15px 25px transparentize(darken($mColor-Dark, 10%), 0.5)
     color: white
     padding: 5px 10px
-    width: 100%
+    width: 20%
+    border-radius: 15px
     display: inline-block
-    background: $trans
     transition: $tran
     &:hover
       background: transparentize($mColor, 0.2)

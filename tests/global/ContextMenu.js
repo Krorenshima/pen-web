@@ -19,7 +19,7 @@ ContextMenu = class ContextMenu extends Container {
 
   btn (name, act) {
     super.create('<button>', true).then((el) => {
-      el.html(name).attr({class:`${this.id}-btn`})
+      el.html(name).attr({class:`${this.id}-btn`, id:pen.cc(name)})
       .on('click', act, true, 'action');
       this.btns.push({el,name,id:this.length,type:'btn'});
       el._nDocument();
@@ -95,20 +95,6 @@ ContextMenu = class ContextMenu extends Container {
     cls === '*' ? console.log('yes') : this.checkElms.push({class:cls, creation});
     return this;
   }
-
-  // arrange (target, celm) {
-  //   let tof = target.hasClass(celm.class);
-  //   if (tof) {
-  //     if (!this.exists('name', celm.creation.name)) {
-  //       this.create(celm.creation);
-  //     }
-  //   } else {
-  //     if (this.exists('name', celm.creation.name)) {
-  //       this.remove('name', celm.creation.name);
-  //     }
-  //   }
-  //   return this;
-  // }
 
   check (e) {
     let target = pen(e.target);

@@ -48,20 +48,20 @@
 }
 
 .context-menu {
-  border: solid 2px #e482dd;
-  background: rgba(0, 0, 0, 0.8);
-  border-radius: 15px;
   overflow: hidden;
-  width: 15%;
+  width: 35%;
+  height: 35vh;
   z-index: 2000;
-  box-shadow: 15px 15px 25px rgba(0, 0, 0, 0.5);
 }
 .context-menu .ctxMenu-btn {
+  border: solid 2px #e482dd;
+  background: rgba(0, 0, 0, 0.8);
+  box-shadow: 15px 15px 25px rgba(42, 9, 40, 0.5);
   color: white;
   padding: 5px 10px;
-  width: 100%;
+  width: 20%;
+  border-radius: 15px;
   display: inline-block;
-  background: transparent;
   transition: all 0.2s ease;
 }
 .context-menu .ctxMenu-btn:hover {
