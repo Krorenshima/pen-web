@@ -13,22 +13,17 @@ styz = pen('<link rel="stylesheet" href="../../style.css">');
 wrapper = pen('<div id="wrpr" class="wrapper">');
 selector = new Container('element-selector');
 header = new Header('Selector');
-header.link([
-  {
-    name:'Pen',
-    href:'../../index.html'
-  }, {
-    name: 'Github',
-    href: 'https://github.com/Krorenshima/pen/'
-  }
-]);
+header.builder('Pen|../../index.html',
+'Tabs|../tabs/index.html',
+'Github|https://github.com/Krorenshima/Pen');
+
 menu = new ContextMenu();
 menu.checkFor('selector', {
   typ: 'btn',
   name: 'Close',
   act (e) {
     let target = pen(e.target);
-    Selectionr.remove('_id', +target.attr('id'));
+    Selectionr.remove('_id', +target.attr('num'));
   }
 }).checkFor('wrapper', {
   typ: 'btn',

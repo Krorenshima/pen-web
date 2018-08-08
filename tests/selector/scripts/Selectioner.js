@@ -3,7 +3,7 @@ let Selectionr;
 Selectionr = class Selectionr extends Container {
   constructor (el) {
     if (!Selectionr.exists('name', el.selector)) {
-      super('selector', '', {align: 'center', "data-id": Selectionr.mem.length});
+      super('selector', '', {align: 'center', "num": Selectionr.mem.length});
       this._id = Selectionr.mem.length;
       this.elMem = el;
 

@@ -1,17 +1,14 @@
-let styz = pen('<link rel="stylesheet" href="style.css">'),
-wrapper = pen('<div id="wrpr" class="wrapper" align="center">'),
-txt = pen('<pre id="test-dummy-text">'), ms,
-header = new Header('Pen'),
+let styz, wrapper, txt, ms, header, menu;
+
+styz = pen('<link rel="stylesheet" href="style.css">');
+wrapper = pen('<div id="wrpr" class="wrapper" align="center">');
+txt = pen('<pre id="test-dummy-text">'); ms;
+header = new Header('Pen');
 menu = new ContextMenu();
-header.link([
-  {
-    name: 'Selector',
-    href: 'tests/selector/index.html'
-  }, {
-    name: 'Github',
-    href: 'https://github.com/Krorenshima/pen/'
-  }
-]);
+
+header.builder('Selector|tests/selector/index.html',
+'Tabs|tests/tabs/index.html',
+'Github|https://github.com/Krorenshima/Pen');
 
 ms = markdownit({
   highlight (str,lang) {
@@ -49,19 +46,13 @@ menu.create([
     act () {
       styz.remove().appendTo(pHead);
     }
-  }, {typ:'break'}, {
-    typ: 'btn',
-    name: 'View Page Source',
-    act () {
-      window.location = `view-source:${window.location.href}`;
-    }
   }
 ]);
 
 wrapper.append(txt);
 pHead.append(styz);
 pBody.append(menu.cont, header.cont, wrapper);
-fetch('https://raw.githubusercontent.com/Chubby-Roo/pen/master/README.md').then((resp) => {
+fetch('https://raw.githubusercontent.com/Krorenshima/Pen/master/README.md').then((resp) => {
   return resp.text();
 }).then((text) => {
   txt.html(ms.render(text),{parse: true});

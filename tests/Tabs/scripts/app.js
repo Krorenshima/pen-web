@@ -1,14 +1,41 @@
-let tb,
-styz = pen('<link>').attr({rel:'stylesheet',href:'../../style.css'}),
-relbut = pen('<button>').attr({id:'relbutt',class:'reload btn bottom-right free'}).html('Reload Style'),
-wrapper = pen('<div>').attr({id:'wrpr',class:'wrapper'}),
+let tb, styz, wrapper, header, menu;
+
+styz = pen('<link rel="stylesheet" href="../../style.css">');
+wrapper = pen('<div id="wrpr" class="wrapper">');
 header = new Header('Tabs');
+header.builder('Pen|../../index.html',
+'Selector|../selector/index.html',
+'Github|https://github.com/Krorenshima/Pen');
 
-header.link('Pen', '../../index.html')
-.link('Selector', '../selector/index.html')
-.link('Github', 'https://github.com/James-Chub-Fox/pen/');
-
-tb = new Tabs();
+menu = new ContextMenu();
+menu.create([
+  {
+    typ: 'btn',
+    name: 'Back',
+    act () {
+      window.history.back();
+    }
+  }, {
+    typ: 'btn',
+    name: 'Forward',
+    act () {
+      window.history.forward();
+    }
+  }, {
+    typ: 'btn',
+    name: 'Reload',
+    act () {
+      window.location.reload();
+    }
+  }, {typ:'break'}, {
+    typ: 'btn',
+    name: 'Reload Style',
+    act () {
+      styz.remove().appendTo(pHead);
+    }
+  }
+]);
+/* tb = new Tabs();
 
 tb.addTab("some title", 'moo cow').addTab('other title', 'wee wow');
 tb.addTab("Lorem Ipsum", "<div style='height: 430px; overflow-y: auto;'>"+(`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pharetra est quis aliquam molestie. Proin efficitur feugiat mi, non pulvinar arcu iaculis vel. Curabitur nulla enim, congue non metus non, maximus interdum justo. Nunc sed luctus velit.
@@ -21,15 +48,7 @@ tb.addTab('simple-editor', '<textarea></textarea>')
 Hi there, I noticed that you had come to this page
 <br>
 Well then welcome, this is a simple tab manager.
-`)
+`); */
 
-relbut.on('click',e=>{styz.remove();styz.appendTo(pHead)}, 'reload');
-
-
-pDoc.ready(() => {
-  let tabs = Object.keys(tb.tabs);
-  pHead.append(styz);
-  wrapper.append(tb.cont, relbut);
-  pBody.append(header.cont, wrapper);
-  tb.activateTab(pen.tools.random(tabs));
-});
+pBody.append(menu.cont, header.cont, wrapper);
+pHead.append(styz);
