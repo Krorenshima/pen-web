@@ -47,9 +47,9 @@ Modal = class Modal extends Container {
 		this.holder.cont.css('display', '');
 		return this;
 	}
-	remove(perm = false) {
+	remove(perm = !1) {
 		super.remove();
-		if (perm === false){delete Modals[this.name]}
+		if (perm === !1){delete Modals[this.name]}
 		return this;
 	}
 }

@@ -85,11 +85,10 @@ Container = class Container {
         break;
       }
     }
-    if (prom) {
-      return new Promise((res, rej) => {info != null ? res(info) : rej(new Error(`Couldn't find ${data}`));});
-    } else {
+    if (prom)
+      return new Promise((res, rej) => {info != null ? res(info) : rej(new Error(`Couldn't find ${data}`))});
+    else
       return info != null ? info : null;
-    }
   }
 
   remove (type, data, prom = !1) {
@@ -100,12 +99,11 @@ Container = class Container {
         console.error(err);
       });
     } else {
-      let info = this.find(type, data, false);
-      if (info != null) {
+      let info = this.find(type, data, !1);
+      if (info != null)
         this.els.splice(info.id, 1);
-      } else {
+      else
         throw new Error(`Couldn't remove ${data}`);
-      }
     }
   }
 
@@ -122,7 +120,13 @@ Container = class Container {
   }
 
   append (...els) {
-    els.forEach(el => el = el instanceof Container ? el.cont : el;this.cont.append(el));
+    els.forEach(el => {
+      if (el instanceof Container)
+        el.cont;
+      else
+        el;
+      this.cont.append(el);
+    });
     return this;
   }
 

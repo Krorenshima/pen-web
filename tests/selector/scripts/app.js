@@ -1,5 +1,5 @@
 let styz, wrapper, selector, header, randowo, rando, menu,
-yaynay = false;
+yaynay = !1;
 
 rando = pen('<div class="rando">')
 .appendTo('body')
@@ -29,7 +29,7 @@ menu.checkFor('selector', {
   typ: 'btn',
   name: 'Show classes',
   act () {
-    if (yaynay === false) {
+    if (yaynay === !1) {
       yaynay = true;
       rando.css('display', '');
       if (pBody.el.events != null) {
@@ -55,7 +55,7 @@ menu.checkFor('selector', {
         });
       }
     } else {
-      yaynay = false;
+      yaynay = !1;
       // pBody.off('mouseover').off('mousemove');
       rando.css('display', 'none');
     }
@@ -91,7 +91,7 @@ menu.create([
 
 selector.cont.attr('align','center');
 
-selector.input = selector.create('<input>', false).attr({id:'selectrInput',class:'element-input input',placeholder:'Place selector here.'})
+selector.input = selector.create('<input>', !1).attr({id:'selectrInput',class:'element-input input',placeholder:'Place selector here.'})
 .on('keydown',e=>{
   if(e.key==='Enter'){
     e.preventDefault();
@@ -99,7 +99,7 @@ selector.input = selector.create('<input>', false).attr({id:'selectrInput',class
   }
 });
 
-selector.btn = selector.create('<button>', false).attr({id:'selectrBtn',class:'element-selector btn'}).html('Submit').on('click',e=>{
+selector.btn = selector.create('<button>', !1).attr({id:'selectrBtn',class:'element-selector btn'}).html('Submit').on('click',e=>{
   let val = selector.input.text,
   timeout = 1750;
   if (val.length === 0) {
@@ -118,8 +118,8 @@ selector.btn = selector.create('<button>', false).attr({id:'selectrBtn',class:'e
   }
 });
 
-selector.create('<br>', false);
-selector.sideMsg = selector.create('<p>', false).attr({id:'sideInfo',class:'side-message'});
+selector.create('<br>', !1);
+selector.sideMsg = selector.create('<p>', !1).attr({id:'sideInfo',class:'side-message'});
 
 wrapper.append(selector.cont);
 

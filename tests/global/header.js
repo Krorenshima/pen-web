@@ -57,7 +57,7 @@ Header = class Header extends Container {
         if (pen.type(href) === 'boolean') {return href ? this : link}
         break;
       default:
-        link = this.create('<a>', false).attr({class:'btn', href}).html(name);
+        link = this.create('<a>', !1).attr({class:'btn', href}).html(name);
         this.links.push({name,href,el:link,id:this.length});
         return this;
     }
