@@ -64,7 +64,17 @@ Container = class Container {
   }
 
   create (el, prom = !1) {
-    return prom ? (new Promise((res, rej) => try {res(this._cre(el))} catch (err) {rej(err)})) : this._cre(el);
+    if (prom) {
+      return new Promise ((res, rej) => {
+        try {
+          res(this._cre(el));
+        } catch (err) {
+          rej(err);
+        }
+      });
+    } else {
+      return this._cre(el);
+    }
   }
 
   find (type, data, prom = !1) {
@@ -76,7 +86,7 @@ Container = class Container {
       }
     }
     if (prom) {
-      return new Promise((res, rej) => info != null ? res(info) : rej(new Error(`Couldn't find ${data}`)));
+      return new Promise((res, rej) => {info != null ? res(info) : rej(new Error(`Couldn't find ${data}`));});
     } else {
       return info != null ? info : null;
     }
@@ -91,7 +101,11 @@ Container = class Container {
       });
     } else {
       let info = this.find(type, data, false);
-      info != null ? this.els.splice(info.id, 1) : throw new Error(`Couldn't remove ${data}`);
+      if (info != null) {
+        this.els.splice(info.id, 1);
+      } else {
+        throw new Error(`Couldn't remove ${data}`);
+      }
     }
   }
 
