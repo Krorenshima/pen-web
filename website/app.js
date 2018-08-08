@@ -1,3 +1,7 @@
+window.onerror = function (e) {
+  document.write('<p><b>Something went wrong.</b></p>');
+}
+
 let styz, wrapper, txt, ms, header, menu;
 
 styz = pen('<link rel="stylesheet" href="style.css">');
