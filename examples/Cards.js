@@ -6,7 +6,7 @@ Card = class Card extends Container {
     this.create(['<div>', '<span>', '<div>'], true).then((els) => {
       els[1].html('X').attr('class', 'clsBtn')
       .on('click', (e) => {
-        this.cont.remove();
+        this.cont.remove(true);
       })._document('closer');
       els[0].html(title).attr({class:`${this.id}-header`})
       ._document('header');

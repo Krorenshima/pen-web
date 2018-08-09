@@ -2,7 +2,7 @@ let ContextMenu;
 
 ContextMenu = class ContextMenu extends Container {
   constructor () {
-    super('context-menu','ctxMenu', {align:'center'});
+    super('context-menu', 'ctxMenu', 'div', {align:'center'});
     this.cont.css({position:'fixed', display:'none'});
     this.btns = [];
     pBody.append(this.cont);
@@ -17,31 +17,21 @@ ContextMenu = class ContextMenu extends Container {
     return this.btns.length;
   }
 
-  btn (name, act) {
-    super.create('<button>', true).then((el) => {
-      el.html(name).attr({class:`${this.id}-btn`, id:pen.cc(name)})
-      .on('click', act, true, 'action');
-      this.btns.push({el,name,id:this.length,type:'btn'});
-      el._nDocument();
-    });
-    return this;
-  }
-
-  brk () {
-    super.create('<p>', true).then((el) => {
-      el.attr('class', `${this.id}-break`);
-      this.btns.push({el,id:this.length,type:'break'});
-    });
-    return this;
-  }
-
   switcher (typ, name, act) {
     switch (typ) {
       case 'btn':
-        this.btn(name, act);
+        super.create('<button>', true).then((el) => {
+          el.html(name).attr({class:`${this.id}-btn`, id:pen.cc(name)})
+          .on('click', act, true, 'action');
+          this.btns.push({el,name,id:this.length,type:'btn'});
+          el._nDocument();
+        });
         break;
       case 'break':
-        this.brk();
+        super.create('<p>', true).then((el) => {
+          el.attr('class', `${this.id}-break`);
+          this.btns.push({el,id:this.length,type:'break'});
+        });
         break;
     }
   }
@@ -72,7 +62,7 @@ ContextMenu = class ContextMenu extends Container {
   remove (typ, dt) {
     if (this.exists(typ, dt)) {
       let btn = this.find(typ, dt);
-      btn.el.remove();
+      btn.el.remove(true);
       this.btns.splice(btn.id, 1);
     } else {
       console.warn(`'${dt}' doesn't exist`);

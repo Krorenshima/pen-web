@@ -38,7 +38,7 @@ Header = class Header extends Container {
   }
 
   remove (options, multi) {
-    this.search(options).el.remove();
+    this.search(options).el.remove(true);
     this.links.splice(this.search(options).id, (multi || 1));
     return this;
   }

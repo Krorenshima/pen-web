@@ -2,15 +2,22 @@ let Container;
 
 Container = class Container {
   constructor (cls, id, elm, attrs) {
+    let args = pen.slice(arguments);
+    for (let i = 0, len = args.length; i < len; i++) {
+      if ('object' === pen.type(args[i])) {
+        attrs = args[i];
+        break
+      }
+    }
     /**
     * The start of the container, just sets up the basic needs for container creation and storage.
     * @type {?string}, @type {?string}, @type {object}
     * Passing in the first two arguments are strings, the first is necessary for it automatically appends a class
     * to the element, the second isn't a requirement for it CamelCases the first argument if it detects \s|_|-
     */
-    id = id || pen.cc(cls);
-    if (id.length === 0) id = pen.cc(cls);
-    this.cont = pen(`<${elm == null ? 'div' : elm} class="${cls}" id="${id}">`);
+    if ((id == null) || pen.empty(id)) id = pen.cc(cls);
+    if ((elm == null) || pen.empty(elm)) elm = 'div';
+    this.cont = pen(`<${elm} class="${cls}" id="${id}">`);
     if (attrs != null) this.cont.attr(attrs);
     this.els = [];
     return this;
@@ -28,7 +35,7 @@ Container = class Container {
     el._document = function (name) {
       if (!pen.empty(name)) {
         it.els.push({name:name,id:it.length,el:el,initiated:!1});
-        it.els.forEach(el => it.initiate(el));
+        for (let i = 0, len = it.els.length, el; i < len; i++) {el = it.els[i]; it.initiate(el)}
         delete this._document;
         delete this._nDocument;
         return this;
@@ -46,7 +53,7 @@ Container = class Container {
   _cre (el) {
     if (pen.type(el) === 'array') {
       let arr = [];
-      el.forEach(elr => arr.push(this._setup(elr)));
+      for (let i = 0, len = el.length; i < len; i++){arr.push(this._setup(el[i]))}
       return arr;
     } else {
       el = this.cont.create(el, 'child');
@@ -110,7 +117,7 @@ Container = class Container {
   desODroy (el) {
     switch (el != null) {
       case true: this.el.appendTo(el); break;
-      default: this.el.remove();
+      default: this.el.remove(true);
     }
     return this;
   }
@@ -120,13 +127,10 @@ Container = class Container {
   }
 
   append (...els) {
-    els.forEach(el => {
-      if (el instanceof Container)
-        el.cont;
-      else
-        el;
+    for (let i = 0, len = els.length, el; i < len; i++) {
+      el = el instanceof Container ? el.cont : el;
       this.cont.append(el);
-    });
+    }
     return this;
   }
 

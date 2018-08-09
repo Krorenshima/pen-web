@@ -63,6 +63,7 @@
   box-shadow: 15px 15px 25px rgba(42, 9, 40, 0.5);
   color: white;
   padding: 5px 10px;
+  width: 15%;
   border-radius: 15px;
   display: inline-block;
   transition: all 0.2s ease;

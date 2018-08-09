@@ -3,14 +3,14 @@ let Selectionr;
 Selectionr = class Selectionr extends Container {
   constructor (el) {
     if (!Selectionr.exists('name', el.selector)) {
-      super('selector', '', {align: 'center', "num": Selectionr.mem.length});
+      super('selector', {align: 'center', "num": Selectionr.mem.length});
       this._id = Selectionr.mem.length;
       this.elMem = el;
 
       this.create('<h4>', true).then(el => {
         el._document('header');
-        el.attr('class',`${this.id}-header`).html(this.elMem.selector);
-        this.closer = el.create('<span>','child').attr('class', `${this.id}-closer`)
+        el.attr('class',`${this.class}-header`).html(this.elMem.selector);
+        this.closer = el.create('<span>','child').attr('class', `${this.class}-closer`)
         .html('X').on('click', ()=> this.close());
       });
 
@@ -82,7 +82,7 @@ Selectionr = class Selectionr extends Container {
     return this;
   }
   close () {
-    this.cont.remove();
+    this.cont.remove(true);
     return this;
   }
   static find (type, data) {

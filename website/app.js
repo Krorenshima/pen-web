@@ -44,7 +44,7 @@ menu.create([
     typ: 'btn',
     name: 'Reload Style',
     act () {
-      styz.remove().appendTo(pHead);
+      styz.remove(true).appendTo(pHead);
     }
   }
 ]);
