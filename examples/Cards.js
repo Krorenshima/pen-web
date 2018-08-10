@@ -3,14 +3,14 @@ let Card;
 Card = class Card extends Container {
   constructor (title = "Default Title", content = "This is default content") {
     super('card', 'cd', {align:'center'});
-    this.create(['<div>', '<span>', '<div>'], true).then((els) => {
+    this.create(['<div>', '<span>', '<div>'], !0).then((els) => {
       els[1].html('X').attr('class', 'clsBtn')
       .on('click', (e) => {
-        this.cont.remove(true);
+        this.cont.remove(!0);
       })._document('closer');
       els[0].html(title).attr({class:`${this.id}-header`})
       ._document('header');
-      els[2].html(content, {parse:true}).attr({class:`${this.id}-body`})
+      els[2].html(content, {parse:!0}).attr({class:`${this.id}-body`})
       ._document("body");
     });
     return this;

@@ -100,7 +100,7 @@ Container = class Container {
 
   remove (type, data, prom = !1) {
     if (prom) {
-      this.find(type, data, true).then((info) => {
+      this.find(type, data, !0).then((info) => {
         this.els.splice(info.id, 1);
       }).catch((err) => {
         console.error(err);
@@ -116,8 +116,8 @@ Container = class Container {
 
   desODroy (el) {
     switch (el != null) {
-      case true: this.el.appendTo(el); break;
-      default: this.el.remove(true);
+      case !0: this.el.appendTo(el); break;
+      default: this.el.remove(!0);
     }
     return this;
   }

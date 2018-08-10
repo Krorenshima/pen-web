@@ -31,7 +31,7 @@ menu.create([
     typ: 'btn',
     name: 'Reload Style',
     act () {
-      styz.remove(true).appendTo(pHead);
+      styz.remove(!0).appendTo(pHead);
     }
   }
 ]);

@@ -20,15 +20,15 @@ ContextMenu = class ContextMenu extends Container {
   switcher (typ, name, act) {
     switch (typ) {
       case 'btn':
-        super.create('<button>', true).then((el) => {
+        super.create('<button>', !0).then((el) => {
           el.html(name).attr({class:`${this.id}-btn`, id:pen.cc(name)})
-          .on('click', act, true, 'action');
+          .on('click', act, !0, 'action');
           this.btns.push({el,name,id:this.length,type:'btn'});
           el._nDocument();
         });
         break;
       case 'break':
-        super.create('<p>', true).then((el) => {
+        super.create('<p>', !0).then((el) => {
           el.attr('class', `${this.id}-break`);
           this.btns.push({el,id:this.length,type:'break'});
         });
@@ -62,7 +62,7 @@ ContextMenu = class ContextMenu extends Container {
   remove (typ, dt) {
     if (this.exists(typ, dt)) {
       let btn = this.find(typ, dt);
-      btn.el.remove(true);
+      btn.el.remove(!0);
       this.btns.splice(btn.id, 1);
     } else {
       console.warn(`'${dt}' doesn't exist`);
@@ -77,7 +77,7 @@ ContextMenu = class ContextMenu extends Container {
       throw new Error('Data must be defined in order to find what you need');
     }
     let btn = this.find(obj.type, obj.data);
-    btn.el.on('click', fn, true, 'action');
+    btn.el.on('click', fn, !0, 'action');
     return this;
   }
 

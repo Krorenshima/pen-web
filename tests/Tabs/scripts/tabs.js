@@ -4,11 +4,11 @@ Tabber = class Tabber extends Container {
   constructor() {
     super('tabs-cont');
     this.tabs = [];
-    this.create('<div>', true).then(el => {
+    this.create('<div>', !0).then(el => {
       el._document('tabDisp');
       el.attr({class:'tab-display', id:'tabDisplay'});
     });
-    this.create('<div>', true).then(el => {
+    this.create('<div>', !0).then(el => {
       el._document('pane');
       el.attr({class:'tab-content', id:'tabContnt'});
     });
@@ -17,7 +17,7 @@ Tabber = class Tabber extends Container {
 
   creTab (name, content) {
     let tb = new Container('tab', '', 'span');
-    tb.create('<button>', true).then(el => {
+    tb.create('<button>', !0).then(el => {
       el._document('closer');
       el.attr({class:'closer'})
     })

@@ -52,22 +52,21 @@
 }
 
 .context-menu {
+  border: solid 2px #e482dd;
+  border-radius: 15px;
   overflow: hidden;
-  width: 35%;
-  height: 35vh;
+  background: rgba(0, 0, 0, 0.8);
+  box-shadow: 15px 15px 25px rgba(42, 9, 40, 0.5);
+  width: 15%;
   z-index: 2000;
 }
 .context-menu .ctxMenu-btn {
-  border: solid 2px #e482dd;
-  background: rgba(0, 0, 0, 0.8);
-  box-shadow: 15px 15px 25px rgba(42, 9, 40, 0.5);
+  background: transparent;
   color: white;
-  padding: 5px 10px;
-  width: 15%;
-  border-radius: 15px;
+  width: 100%;
+  padding: 5px 0.1px;
   display: inline-block;
   transition: all 0.2s ease;
-  margin: 0 5px;
 }
 .context-menu .ctxMenu-btn:hover {
   background: rgba(189, 41, 178, 0.8);

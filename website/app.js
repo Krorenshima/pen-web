@@ -14,7 +14,7 @@ ms = markdownit({
   highlight (str,lang) {
     if (lang && hljs.getLanguage(lang)) {
       try {
-        return `<pre class='hljs'><code>${(hljs.highlight(lang, str, true).value)}</code></pre>`;
+        return `<pre class='hljs'><code>${(hljs.highlight(lang, str, !0).value)}</code></pre>`;
       } catch (__) {}
     }
     return `<pre class='hljs'><code>${ms.utils.escapeHtml(str)}</code></pre>`;
@@ -44,7 +44,7 @@ menu.create([
     typ: 'btn',
     name: 'Reload Style',
     act () {
-      styz.remove(true).appendTo(pHead);
+      styz.remove(!0).appendTo(pHead);
     }
   }
 ]);
@@ -55,5 +55,5 @@ pBody.append(menu.cont, header.cont, wrapper);
 fetch('https://raw.githubusercontent.com/Krorenshima/Pen/master/README.md').then((resp) => {
   return resp.text();
 }).then((text) => {
-  txt.html(ms.render(text),{parse: true});
+  txt.html(ms.render(text),{parse: !0});
 });

@@ -11,11 +11,11 @@ Modal = class Modal extends Container {
     this.holder.cont.css('display', 'none');
     this.append(this.holder);
     this.clsBtn = this.holder.elm('<span>').attr({class:`${this.id}-cls btn`,id:`${this.id}ClsBtn`}).html('X')
-    .on('click', ()=>{this.close()}, true);
+    .on('click', ()=>{this.close()}, !0);
     this.img = this.holder.elm('<img>').attr({src:this.src,class:`${this.id}-img`,id:`${this.id}Img`});
     this.innerCaption = this.holder.elm('<div>').attr({class:`${this.id}-inner-caption`,id:`${this.id}InnerCaption`});
-    Object.defineProperty(this, 'closed', {get(){return this.holder.cont.css('display')==='none'},enumerable: true});
-    Object.defineProperty(this, 'caption', {get(){return this.innerCaption.text}, enumerable: true});
+    Object.defineProperty(this, 'closed', {get(){return this.holder.cont.css('display')==='none'},enumerable: !0});
+    Object.defineProperty(this, 'caption', {get(){return this.innerCaption.text}, enumerable: !0});
     Modal.memory[`${this.name}${Object.keys(Modal.memory).length}`] = this;
     this.innerCaption.html(caption);
     return this.closed ? this : (this.close(), this);
@@ -48,7 +48,7 @@ Modal = class Modal extends Container {
 		return this;
 	}
 	remove(perm = !1) {
-		super.remove(true);
+		super.remove(!0);
 		if (perm === !1){delete Modals[this.name]}
 		return this;
 	}

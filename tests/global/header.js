@@ -4,7 +4,7 @@ Header = class Header extends Container {
   constructor (title) {
     title = (title || 'Pen');
     super('header top free', 'hdr');
-    this.create('<span>', true).then((el) => {
+    this.create('<span>', !0).then((el) => {
       el._document('titleM');
       el.attr({id:'hdrTitle',class:'header-title'})
       .html(title); if(document!=null){document.title=title}
@@ -38,7 +38,7 @@ Header = class Header extends Container {
   }
 
   remove (options, multi) {
-    this.search(options).el.remove(true);
+    this.search(options).el.remove(!0);
     this.links.splice(this.search(options).id, (multi || 1));
     return this;
   }
@@ -50,7 +50,7 @@ Header = class Header extends Container {
 
   switcher (name, href) {
     let link;
-    switch (true) {
+    switch (!0) {
       case name.endsWith('del'):
         name = name.split(/[\ ,]/).pop();
         this.remove({type:'name',data:name});
