@@ -1,4 +1,4 @@
-let styz, wrapper, txt, ms, header, menu;
+let styz, wrapper, txt, ms, header, menu, img;
 
 styz = pen('<link rel="stylesheet" href="style.css">');
 wrapper = pen('<div id="wrpr" class="wrapper" align="center">');
@@ -22,31 +22,11 @@ ms = markdownit({
 });
 
 menu.create([
-  {
-    typ: 'btn',
-    name: 'Back',
-    act () {
-      window.history.back();
-    }
-  }, {
-    typ: 'btn',
-    name: 'Forward',
-    act () {
-      window.history.forward();
-    }
-  }, {
-    typ: 'btn',
-    name: 'Reload',
-    act () {
-      window.location.reload();
-    }
-  }, {typ:'break'}, {
-    typ: 'btn',
-    name: 'Reload Style',
-    act () {
-      styz.remove(!0).appendTo(pHead);
-    }
-  }
+  {typ: 'btn',name: 'Back',act () {window.history.back()}},
+  {typ: 'btn',name: 'Forward',act () {window.history.forward()}},
+  {typ: 'btn',name: 'Reload',act () {window.location.reload()}},
+  {typ:'break'},
+  {typ: 'btn',name: 'Reload Style',act () {styz.remove(!0).appendTo(pHead)}}
 ]);
 
 wrapper.append(txt);

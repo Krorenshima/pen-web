@@ -1,3 +1,25 @@
+.element-selector
+  width: 100%
+  background: $mColor
+  color: white
+  padding: 15px 0
+  .element-input
+    width: 50%
+    z-index: 19999
+    border-left: none
+    border-right: none
+    color: white
+    transition: all 0.9s ease
+    &:focus
+      color: black
+      transform: scaleX(2) scaleY(2) translateY(80px)
+      background: transparentize($mColor, 0.3)
+      border-left: solid 2px $mColor-Light
+      border-right: solid 2px $mColor-Light
+      box-shadow: 0 0 20px 500px rgba(0,0,0,.9)
+  .element-selector.btn
+    width: 50%
+
 .selector
   padding: 10px
   color: white
