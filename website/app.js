@@ -1,6 +1,7 @@
 let styz, wrapper, txt, ms, header, menu, img;
 
 styz = pen('<link rel="stylesheet" href="style.css">');
+pen('<link rel="shortcut icon" type="image/png" href="./icons/pen.png">').appendTo(pHead)
 wrapper = pen('<div id="wrpr" class="wrapper" align="center">');
 txt = pen('<pre id="test-dummy-text">'); ms;
 header = new Header('Pen');

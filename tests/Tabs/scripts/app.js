@@ -1,6 +1,7 @@
 let tb, styz, wrapper, header, menu;
 
 styz = pen('<link rel="stylesheet" href="../../style.css">');
+pen('<link rel="shortcut icon" type="image/png" href="./../../icons/pen.png">').appendTo(pHead)
 wrapper = pen('<div id="wrpr" class="wrapper">');
 header = new Header('Tabs');
 header.builder('Pen|../../index.html',

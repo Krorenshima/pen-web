@@ -3,7 +3,11 @@ var follower, header, menu, rando, randowo, selector, showler, styz, wrapper, ya
 
 yaynay = !1;
 
-rando = pen('<div class="rando">').appendTo('body').css({
+rando = pen('<div class="rando">');
+
+rando.appendTo('body')
+
+rando.css({
   background: 'rgba(0,0,0,.5)',
   border: 'solid 2px grey',
   'border-radius': '15px',
@@ -15,6 +19,7 @@ rando = pen('<div class="rando">').appendTo('body').css({
 });
 
 styz = pen('<link rel="stylesheet" href="../../style.css">');
+pen('<link rel="shortcut icon" type="image/png" href="./../../icons/pen.png">').appendTo(pHead)
 
 wrapper = pen('<div id="wrpr" class="wrapper">');
 
